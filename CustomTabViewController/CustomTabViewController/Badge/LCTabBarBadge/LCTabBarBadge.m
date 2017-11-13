@@ -43,7 +43,7 @@
     
     _badgeValue = [badgeValue copy];
     
-    self.hidden = !(BOOL)self.badgeValue || self.badgeValue.length == 0;
+    self.hidden = !self.badgeValue || self.badgeValue.length == 0;
     
     if (self.badgeValue && self.badgeValue.length > 0) {
         

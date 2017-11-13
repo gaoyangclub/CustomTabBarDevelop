@@ -26,8 +26,10 @@
 }
 
 -(void)setBadgeValue:(NSString *)badgeValue{
-    _badgeValue = badgeValue;
-    [self setNeedsLayout];
+    if(_badgeValue != badgeValue){
+        _badgeValue = badgeValue;
+        [self setNeedsLayout];
+    }
 }
 
 

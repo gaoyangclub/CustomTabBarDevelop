@@ -10,6 +10,9 @@
 		840664AD1DBF3F4F00D0A991 /* LCTabBarBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 840664AC1DBF3F4F00D0A991 /* LCTabBarBadge.m */; };
 		840664B71DBF529900D0A991 /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = 840664B21DBF529900D0A991 /* demo.html */; };
 		840664BA1DBF529900D0A991 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 840664B51DBF529900D0A991 /* iconfont.ttf */; };
+		849B08B31FB99977005BA844 /* ico_make.png in Resources */ = {isa = PBXBuildFile; fileRef = 849B08B01FB99977005BA844 /* ico_make.png */; };
+		849B08B41FB99977005BA844 /* JSDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 849B08B21FB99977005BA844 /* JSDropDownMenu.m */; };
+		849B08B71FB99A65005BA844 /* SortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849B08B61FB99A65005BA844 /* SortViewController.m */; };
 		84F9EA7F1DBDE1DE008B27A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9EA7E1DBDE1DE008B27A2 /* main.m */; };
 		84F9EA821DBDE1DE008B27A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9EA811DBDE1DE008B27A2 /* AppDelegate.m */; };
 		84F9EA851DBDE1DE008B27A2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9EA841DBDE1DE008B27A2 /* ViewController.m */; };
@@ -26,6 +29,11 @@
 		840664AC1DBF3F4F00D0A991 /* LCTabBarBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTabBarBadge.m; sourceTree = "<group>"; };
 		840664B21DBF529900D0A991 /* demo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo.html; sourceTree = "<group>"; };
 		840664B51DBF529900D0A991 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
+		849B08B01FB99977005BA844 /* ico_make.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_make.png; sourceTree = "<group>"; };
+		849B08B11FB99977005BA844 /* JSDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDropDownMenu.h; sourceTree = "<group>"; };
+		849B08B21FB99977005BA844 /* JSDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDropDownMenu.m; sourceTree = "<group>"; };
+		849B08B51FB99A65005BA844 /* SortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortViewController.h; sourceTree = "<group>"; };
+		849B08B61FB99A65005BA844 /* SortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortViewController.m; sourceTree = "<group>"; };
 		84F9EA7A1DBDE1DE008B27A2 /* CustomTabViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomTabViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9EA7E1DBDE1DE008B27A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84F9EA801DBDE1DE008B27A2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -82,6 +90,16 @@
 			path = Badge;
 			sourceTree = "<group>";
 		};
+		849B08AF1FB99977005BA844 /* JSDropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				849B08B01FB99977005BA844 /* ico_make.png */,
+				849B08B11FB99977005BA844 /* JSDropDownMenu.h */,
+				849B08B21FB99977005BA844 /* JSDropDownMenu.m */,
+			);
+			path = JSDropDownMenu;
+			sourceTree = "<group>";
+		};
 		84F9EA711DBDE1DE008B27A2 = {
 			isa = PBXGroup;
 			children = (
@@ -101,11 +119,14 @@
 		84F9EA7C1DBDE1DE008B27A2 /* CustomTabViewController */ = {
 			isa = PBXGroup;
 			children = (
+				849B08AF1FB99977005BA844 /* JSDropDownMenu */,
 				840664B11DBF529900D0A991 /* iconfont */,
 				846F3D341DBEFCA200412907 /* Badge */,
 				84F9EA9C1DBDE464008B27A2 /* GYTabBar */,
 				84F9EA801DBDE1DE008B27A2 /* AppDelegate.h */,
 				84F9EA811DBDE1DE008B27A2 /* AppDelegate.m */,
+				849B08B51FB99A65005BA844 /* SortViewController.h */,
+				849B08B61FB99A65005BA844 /* SortViewController.m */,
 				84F9EA831DBDE1DE008B27A2 /* ViewController.h */,
 				84F9EA841DBDE1DE008B27A2 /* ViewController.m */,
 				84F9EA891DBDE1DE008B27A2 /* Assets.xcassets */,
@@ -199,6 +220,7 @@
 				84F9EA8D1DBDE1DE008B27A2 /* LaunchScreen.storyboard in Resources */,
 				840664BA1DBF529900D0A991 /* iconfont.ttf in Resources */,
 				840664B71DBF529900D0A991 /* demo.html in Resources */,
+				849B08B31FB99977005BA844 /* ico_make.png in Resources */,
 				84F9EA8A1DBDE1DE008B27A2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,8 +234,10 @@
 			files = (
 				840664AD1DBF3F4F00D0A991 /* LCTabBarBadge.m in Sources */,
 				84F9EAA11DBDE464008B27A2 /* GYTabBarItem.m in Sources */,
+				849B08B71FB99A65005BA844 /* SortViewController.m in Sources */,
 				84F9EAAB1DBE0929008B27A2 /* GYTabBarController.m in Sources */,
 				84F9EA851DBDE1DE008B27A2 /* ViewController.m in Sources */,
+				849B08B41FB99977005BA844 /* JSDropDownMenu.m in Sources */,
 				84F9EA821DBDE1DE008B27A2 /* AppDelegate.m in Sources */,
 				84F9EA7F1DBDE1DE008B27A2 /* main.m in Sources */,
 				84F9EAA21DBDE464008B27A2 /* GYTabBarView.m in Sources */,
@@ -322,6 +346,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CustomTabViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.best.CustomTabViewController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -333,6 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CustomTabViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.best.CustomTabViewController;
 				PRODUCT_NAME = "$(TARGET_NAME)";

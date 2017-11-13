@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "GYTabBarController.h"
 #import "DIYTabBarItem.h"
+#import "SortViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,15 +23,22 @@
     
     
     UINavigationController* itemCtrl1 = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
+    itemCtrl1.automaticallyAdjustsScrollViewInsets = itemCtrl1.navigationBar.translucent = NO;
     
     UINavigationController* itemCtrl2 = [[UINavigationController alloc]init];
+    itemCtrl2.title = @"测试标题2";
     itemCtrl2.view.backgroundColor = [UIColor grayColor];
+    itemCtrl2.automaticallyAdjustsScrollViewInsets = itemCtrl2.navigationBar.translucent = NO;
     
-    UINavigationController* itemCtrl3 = [[UINavigationController alloc]init];
-    itemCtrl3.view.backgroundColor = [UIColor greenColor];
+    UINavigationController* itemCtrl3 = [[UINavigationController alloc] initWithRootViewController:[[SortViewController alloc] init]];;
+    itemCtrl3.title = @"测试标题3";
+//    itemCtrl3.view.backgroundColor = [UIColor greenColor];
+    itemCtrl3.automaticallyAdjustsScrollViewInsets = itemCtrl3.navigationBar.translucent = NO;
     
     UINavigationController* itemCtrl4 = [[UINavigationController alloc]init];
+    itemCtrl4.title = @"测试标题4";
     itemCtrl4.view.backgroundColor = [UIColor blueColor];
+    itemCtrl4.automaticallyAdjustsScrollViewInsets = itemCtrl4.navigationBar.translucent = NO;
     
 //    UITabBarController* tabBarCtl = [[UITabBarController alloc] init];
 //    [tabBarCtl setViewControllers:@[itemCtrl1,itemCtrl2,itemCtrl3] animated:YES];
@@ -56,6 +64,7 @@
     //\U00003439 \U000035ad \U000035ae \U000035af \U000035eb \U000035ec \U00003605"
     [tabBarCtl setItemBadge:20 atIndex:0];
     [tabBarCtl setItemBadge:5 atIndex:1];
+//    [tabBarCtl setItemBadge:80 atIndex:2];
     [tabBarCtl setItemBadge:100 atIndex:3];
     return tabBarCtl;
 }
@@ -68,6 +77,46 @@
     self.window.rootViewController = [self createNormalTabBar];//可替换
     
     return YES;
+}
+
+
+//获取当前屏幕显示的viewcontroller
++ (UIViewController *)getCurrentVC
+{
+    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
+    
+    return currentVC;
+}
+
++ (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC
+{
+    UIViewController *currentVC;
+    
+    if ([rootVC presentedViewController]) {
+        // 视图是被presented出来的
+        
+        rootVC = [rootVC presentedViewController];
+    }
+    
+    if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        // 根视图为UITabBarController
+        
+        currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
+        
+    } else if ([rootVC isKindOfClass:[UINavigationController class]]){
+        // 根视图为UINavigationController
+        
+        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
+        
+    } else {
+        // 根视图为非导航类
+        
+        currentVC = rootVC;
+    }
+    
+    return currentVC;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -10,6 +10,7 @@
 
 @interface GYTabBarController ()<GYTabBarDelegate>{
     BOOL changeData;
+//    BOOL hidesGYBarWhenPushed;
 }
 
 @property(nonatomic,retain) GYTabBarView* tabBarView;
@@ -19,12 +20,12 @@
 
 @implementation GYTabBarController
 
--(CGFloat)tabBarHeight{
-    if(!_tabBarHeight){
-        _tabBarHeight = 50;//默认
-    }
-    return _tabBarHeight;
-}
+//-(CGFloat)tabBarHeight{
+//    if(!_tabBarHeight){
+//        _tabBarHeight = 50;//默认
+//    }
+//    return _tabBarHeight;
+//}
 
 -(void)setItemClass:(Class)itemClass{
     _itemClass = itemClass;
@@ -48,7 +49,52 @@
     if (!_tabBarView) {
         _tabBarView = [[GYTabBarView alloc]init];
         _tabBarView.delegate = self;
+        _tabBarView.backgroundColor = [UIColor whiteColor];
 //        [self.view addSubview:_tabBarView];
+        [self.tabBar addSubview:_tabBarView];
+//        _tabBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+//        _tabBarView.translatesAutoresizingMaskIntoConstraints = NO;
+//        
+//        [self.tabBar addConstraints:@[
+//                                    
+//                                    //view1 constraints
+//                                    [NSLayoutConstraint constraintWithItem:_tabBarView
+//                                                                 attribute:NSLayoutAttributeTop
+//                                                                 relatedBy:NSLayoutRelationEqual
+//                                                                    toItem:self.tabBar
+//                                                                 attribute:NSLayoutAttributeTop
+//                                                                multiplier:1.0
+//                                                                  constant:0],
+//                                    
+//                                    [NSLayoutConstraint constraintWithItem:_tabBarView
+//                                                                 attribute:NSLayoutAttributeLeft
+//                                                                 relatedBy:NSLayoutRelationEqual
+//                                                                    toItem:self.tabBar
+//                                                                 attribute:NSLayoutAttributeLeft
+//                                                                multiplier:1.0
+//                                                                  constant:0],
+//                                    
+//                                    [NSLayoutConstraint constraintWithItem:_tabBarView
+//                                                                 attribute:NSLayoutAttributeBottom
+//                                                                 relatedBy:NSLayoutRelationEqual
+//                                                                    toItem:self.tabBar
+//                                                                 attribute:NSLayoutAttributeBottom
+//                                                                multiplier:1.0
+//                                                                  constant:0],
+//                                    
+//                                    [NSLayoutConstraint constraintWithItem:_tabBarView
+//                                                                 attribute:NSLayoutAttributeRight
+//                                                                 relatedBy:NSLayoutRelationEqual
+//                                                                    toItem:self.tabBar
+//                                                                 attribute:NSLayoutAttributeRight
+//                                                                multiplier:1
+//                                                                  constant:0],
+//                                    ]];
+        
+//        [_tabBarView mas_makeConstraints:^(MASConstraintMaker *make) {
+////            make.left.right.top.bottom.equalTo(self.tabBar);
+//        }];
     }
     return _tabBarView;
 }
@@ -61,26 +107,29 @@
     return _lineView;
 }
 
+
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self prepare];
-    });
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        [self prepare];
+//    });
     
-    UIView* tw = self.view.subviews[0];//UITransitionView
-    //        tw.backgroundColor = UIColor.grayColor()
-    tw.frame = CGRectMake(0,0,CGRectGetWidth(self.view.bounds),CGRectGetHeight(self.view.bounds) - self.tabBarHeight);
+//    UIView* tw = self.view.subviews[0];//UITransitionView
+//    //        tw.backgroundColor = UIColor.grayColor()
+//    tw.frame = CGRectMake(0,0,CGRectGetWidth(self.view.bounds),CGRectGetHeight(self.view.bounds) - self.tabBarHeight);
+//    
+//    CGRect tabBarFrame = self.tabBar.frame;
+//    tabBarFrame.size = CGSizeMake(CGRectGetWidth(self.view.bounds), self.tabBarHeight);
+//    self.tabBar.frame = tabBarFrame;
     
-    CGRect tabBarFrame = self.tabBar.frame;
-    tabBarFrame.size = CGSizeMake(CGRectGetWidth(self.view.bounds), self.tabBarHeight);
-    self.tabBar.frame = tabBarFrame;
-    
-    self.tabBarView.frame = self.tabBar.frame;//CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-    self.lineView.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - self.tabBarHeight, CGRectGetWidth(self.view.bounds), 1);
+//    self.tabBarView.frame = self.tabBar.bounds;//CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+//    self.lineView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 1);
     
     self.tabBarView.itemClass = _itemClass;
+    self.tabBarView.frame = self.tabBar.bounds;
+    [self.tabBar bringSubviewToFront:self.tabBarView];
     
     if (changeData) {
         changeData = NO;
@@ -89,10 +138,11 @@
     }
 }
 
--(void)prepare{
-    [self.view addSubview:self.tabBarView];
-    [self.view addSubview:self.lineView];//TODO 添加横线
-}
+//-(void)prepare{
+////    [self.tabBar addSubview:self.tabBarView];
+////    [self.tabBar bringSubviewToFront:self.tabBarView];
+////    [self.tabBar addSubview:self.lineView];//TODO 添加横线
+//}
 
 -(void)ensureControllers{
     NSMutableArray<UIViewController *> *ctrls = [[NSMutableArray alloc] init];
@@ -108,7 +158,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tabBar.hidden = YES; //直接忽略原先的
+//    self.tabBar.hidden = YES; //直接忽略原先的
     // Do any additional setup after loading the view.
 }
 

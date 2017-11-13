@@ -12,7 +12,7 @@
 @interface GYTabBarController : UITabBarController
 
 //@property(nonatomic,retain,readonly) GYTabBarView* tabBarView;
-@property(nonatomic,assign) CGFloat tabBarHeight;
+//@property(nonatomic,assign) CGFloat tabBarHeight;
 @property(nonatomic,retain) Class itemClass;
 @property(nonatomic,retain) NSArray<TabData *>* dataArray;
 

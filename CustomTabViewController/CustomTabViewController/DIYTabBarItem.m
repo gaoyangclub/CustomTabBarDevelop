@@ -12,7 +12,9 @@
 #define selectColor [UIColor orangeColor]
 #define normalColor [UIColor darkGrayColor]
 
-@interface DIYTabBarItem()
+@interface DIYTabBarItem(){
+    BOOL badgeChange;
+}
 
 @property(nonatomic,retain) UILabel* titleLabel;
 @property(nonatomic,retain) UILabel* imageLabel;//图片文本
@@ -66,6 +68,11 @@
     return _lcTabBadge;
 }
 
+-(void)setBadgeValue:(NSString *)badgeValue{
+    [super setBadgeValue:badgeValue];
+    badgeChange = YES;
+}
+
 //-(NSString *)badgeValue{
 //    return @"9";
 //}
@@ -97,7 +104,13 @@
 //        self.backgroundColor = [UIColor lightGrayColor];
     }
     
-    self.lcTabBadge.badgeValue = self.badgeValue;
+    if (badgeChange) {
+        badgeChange = NO;
+        if(self.badgeValue == NULL){
+//            NSLog(@"badgeValue为空");
+        }
+        self.lcTabBadge.badgeValue = self.badgeValue;
+    }
     CGRect badgeFrame = self.lcTabBadge.frame;
     badgeFrame.origin = CGPointMake(CGRectGetWidth(self.bounds) * 3 / 4. - CGRectGetWidth(badgeFrame) / 2, 2);
     self.lcTabBadge.frame = badgeFrame;
