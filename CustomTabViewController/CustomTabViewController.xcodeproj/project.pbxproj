@@ -10,6 +10,7 @@
 		840664AD1DBF3F4F00D0A991 /* LCTabBarBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 840664AC1DBF3F4F00D0A991 /* LCTabBarBadge.m */; };
 		840664B71DBF529900D0A991 /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = 840664B21DBF529900D0A991 /* demo.html */; };
 		840664BA1DBF529900D0A991 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 840664B51DBF529900D0A991 /* iconfont.ttf */; };
+		8476493B1FBD329F00E9B4F2 /* UserHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8476493A1FBD329F00E9B4F2 /* UserHomeController.m */; };
 		849B08B31FB99977005BA844 /* ico_make.png in Resources */ = {isa = PBXBuildFile; fileRef = 849B08B01FB99977005BA844 /* ico_make.png */; };
 		849B08B41FB99977005BA844 /* JSDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 849B08B21FB99977005BA844 /* JSDropDownMenu.m */; };
 		849B08B71FB99A65005BA844 /* SortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849B08B61FB99A65005BA844 /* SortViewController.m */; };
@@ -33,6 +34,8 @@
 		840664AC1DBF3F4F00D0A991 /* LCTabBarBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTabBarBadge.m; sourceTree = "<group>"; };
 		840664B21DBF529900D0A991 /* demo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo.html; sourceTree = "<group>"; };
 		840664B51DBF529900D0A991 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
+		847649391FBD329F00E9B4F2 /* UserHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHomeController.h; sourceTree = "<group>"; };
+		8476493A1FBD329F00E9B4F2 /* UserHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHomeController.m; sourceTree = "<group>"; };
 		849B08B01FB99977005BA844 /* ico_make.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_make.png; sourceTree = "<group>"; };
 		849B08B11FB99977005BA844 /* JSDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDropDownMenu.h; sourceTree = "<group>"; };
 		849B08B21FB99977005BA844 /* JSDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDropDownMenu.m; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				84F9EA7D1DBDE1DE008B27A2 /* Supporting Files */,
 				84F9EAA31DBDFE69008B27A2 /* DIYTabBarItem.h */,
 				84F9EAA41DBDFE69008B27A2 /* DIYTabBarItem.m */,
+				847649391FBD329F00E9B4F2 /* UserHomeController.h */,
+				8476493A1FBD329F00E9B4F2 /* UserHomeController.m */,
 			);
 			path = CustomTabViewController;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				A9D9173B1FB9EE6F00CC317B /* JKRootNavigationController.m in Sources */,
 				A9D9173C1FB9EE6F00CC317B /* UINavigationBar+JKTransparentize.m in Sources */,
 				84F9EA7F1DBDE1DE008B27A2 /* main.m in Sources */,
+				8476493B1FBD329F00E9B4F2 /* UserHomeController.m in Sources */,
 				A9D9173D1FB9EE6F00CC317B /* UIViewController+JKNavigationController.m in Sources */,
 				84F9EAA21DBDE464008B27A2 /* GYTabBarView.m in Sources */,
 				84F9EAA51DBDFE69008B27A2 /* DIYTabBarItem.m in Sources */,

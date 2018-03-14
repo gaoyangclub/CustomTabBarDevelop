@@ -10,6 +10,7 @@
 #import "JSDropDownMenu.h"
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import "JKNavigationController.h"
 
 @interface SortViewController ()<JSDropDownMenuDataSource,JSDropDownMenuDelegate>{
     
@@ -26,6 +27,7 @@
 }
 
 @property(nonatomic,retain)UILabel* titleView;
+@property(nonatomic,retain)UIView* userBackView;
 
 @end
 
@@ -41,12 +43,40 @@
     return _titleView;
 }
 
+-(UIView *)userBackView{
+    if (!_userBackView) {
+        _userBackView = [[UIView alloc]init];
+        _userBackView.backgroundColor = [UIColor lightGrayColor];
+        [self.view addSubview:_userBackView];
+    }
+    return _userBackView;
+}
+
+-(void)viewDidLayoutSubviews{
+    self.userBackView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 3);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    
+//    UIView* userBackView = [[UIView alloc]init];
+//    userBackView.backgroundColor = [UIColor lightGrayColor];
+//    [self.view addSubview:userBackView];
+//    
+//    userBackView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 10);
+//    self.userBackView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 10);
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
+//    self.automaticallyAdjustsScrollViewInsets = self.navigationController.navigationBar.translucent = NO;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+    /// 修改navigationBar的tintColor需要重绘返回按钮JKBackIndicatorButton的背景图，所以封装起来了。
+    /// 会设置所有子控制器navigationBar的颜色，并且决定下一个Push的控制器默认的jk_barBackgroundColor，全局效果
+//    self.navigationController.navigationBar.jk_barBackgroundColor = [UIColor orangeColor];
+    [self.navigationController.navigationBar jk_setNavigationBarBackgroundColor:[UIColor purpleColor]];//只设置背景不影响全局
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     // 指定默认选中
 //    _currentData1Index = 0;
 //    _currentData1SelectedIndex = 0;
@@ -75,13 +105,23 @@
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(openNextController:)];
+    
+//    NSLog(@"tabBarController:%@",self.tabBarController);
+//    NSArray* viewControllers = [AppDelegate getCurrentNavigationController].viewControllers;
+//    if (viewControllers.firstObject == self) {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//    }
+    if (!self.hidesBottomBarWhenPushed) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 }
 
 
 -(void)openNextController:(UIView*)sender{
     ViewController* vc = [[ViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
-    [[AppDelegate getCurrentVC].navigationController pushViewController:vc animated:YES];
+//    [self.navigationController pushViewController:vc animated:YES];
+    [[AppDelegate getCurrentNavigationController] pushViewController:vc animated:YES];
 }
 
 - (NSInteger)numberOfColumnsInMenu:(JSDropDownMenu *)menu {

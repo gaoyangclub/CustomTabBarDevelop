@@ -10,7 +10,6 @@
 
 @interface GYTabBarController ()<GYTabBarDelegate>{
     BOOL changeData;
-//    BOOL hidesGYBarWhenPushed;
 }
 
 @property(nonatomic,retain) GYTabBarView* tabBarView;
@@ -125,11 +124,12 @@
 //    self.tabBar.frame = tabBarFrame;
     
 //    self.tabBarView.frame = self.tabBar.bounds;//CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-//    self.lineView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 1);
     
     self.tabBarView.itemClass = _itemClass;
     self.tabBarView.frame = self.tabBar.bounds;
     [self.tabBar bringSubviewToFront:self.tabBarView];
+    self.lineView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 1);
+    [self.tabBar bringSubviewToFront:self.lineView];
     
     if (changeData) {
         changeData = NO;

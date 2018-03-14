@@ -11,6 +11,7 @@
 #import "DIYTabBarItem.h"
 #import "AppDelegate.h"
 #import "SortViewController.h"
+#import "JKNavigationController.h"
 
 @interface ViewController ()<GYTabBarDelegate>
 
@@ -45,6 +46,13 @@
                                               target:self
                                               action:@selector(openNextController:)];
     
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+//    / 会设置所有子控制器navigationBar的颜色，并且决定下一个Push的控制器默认的jk_barBackgroundColor，全局效果
+    self.navigationController.navigationBar.jk_barBackgroundColor = [UIColor orangeColor];
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+    if (!self.hidesBottomBarWhenPushed) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
     GYTabBarView* tabbar = [[GYTabBarView alloc] initWithFrame:CGRectMake(10, 0, 200, 30)];
     tabbar.itemClass = [DIYTabBarItem class];
@@ -57,15 +65,15 @@
     [self.view addSubview:tabbar];
     
     //\U00003439 \U000035ad \U000035ae \U000035af \U000035eb \U000035ec \U00003605"
+    
+    NSLog(@"tabBarController:%@",self.tabBarController);
 }
 
 -(void)openNextController:(UIView*)sender{
-    
-    
     SortViewController* vc = [[SortViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController pushViewController:vc animated:YES];
-    [[AppDelegate getCurrentVC].navigationController pushViewController:vc animated:YES];
+    [[AppDelegate getCurrentNavigationController] pushViewController:vc animated:YES];
 }
 
 -(void)didSelectItem:(GYTabBarView *)tabBar tabData:(TabData *)tabData index:(NSInteger)index{

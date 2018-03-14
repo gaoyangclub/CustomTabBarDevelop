@@ -11,6 +11,9 @@
 #import "GYTabBarController.h"
 #import "DIYTabBarItem.h"
 #import "SortViewController.h"
+#import "JKNavigationController.h"
+#import "JKRootNavigationController.h"
+#import "UserHomeController.h"
 
 @interface AppDelegate ()
 
@@ -19,26 +22,32 @@
 @implementation AppDelegate
 
 
+-(JKRootNavigationController*)createNavigationController:(UIViewController*)viewController{
+    JKRootNavigationController* navigationController = [[JKRootNavigationController alloc]initWithRootViewController:viewController];
+    navigationController.automaticallyAdjustsScrollViewInsets = navigationController.navigationBar.translucent = NO;
+    /// 全局效果
+//    [navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+//    /// 只会设置当前控制器的navigationBar的颜色
+//    [navigationController.navigationBar jk_setNavigationBarBackgroundColor:[UIColor orangeColor]];
+    ///  会设置所有子控制器的全屏手势使能状态，全局效果
+    navigationController.jk_fullScreenPopGestrueEnabled = YES;
+    return navigationController;
+}
+
 -(UITabBarController*)createNormalTabBar{
     
-    
-    UINavigationController* itemCtrl1 = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
-    itemCtrl1.automaticallyAdjustsScrollViewInsets = itemCtrl1.navigationBar.translucent = NO;
-    
-    UINavigationController* itemCtrl2 = [[UINavigationController alloc]init];
+    UINavigationController* itemCtrl1 = [self createNavigationController:[[ViewController alloc] init]];
+    UINavigationController* itemCtrl2 = [self createNavigationController:[[ViewController alloc] init]];
     itemCtrl2.title = @"测试标题2";
-    itemCtrl2.view.backgroundColor = [UIColor grayColor];
-    itemCtrl2.automaticallyAdjustsScrollViewInsets = itemCtrl2.navigationBar.translucent = NO;
+//    itemCtrl2.view.backgroundColor = [UIColor grayColor];
     
-    UINavigationController* itemCtrl3 = [[UINavigationController alloc] initWithRootViewController:[[SortViewController alloc] init]];;
+    UINavigationController* itemCtrl3 = [self createNavigationController:[[SortViewController alloc] init]];
     itemCtrl3.title = @"测试标题3";
 //    itemCtrl3.view.backgroundColor = [UIColor greenColor];
-    itemCtrl3.automaticallyAdjustsScrollViewInsets = itemCtrl3.navigationBar.translucent = NO;
     
-    UINavigationController* itemCtrl4 = [[UINavigationController alloc]init];
+    UINavigationController* itemCtrl4 = [self createNavigationController:[[UserHomeController alloc] init]];
     itemCtrl4.title = @"测试标题4";
-    itemCtrl4.view.backgroundColor = [UIColor blueColor];
-    itemCtrl4.automaticallyAdjustsScrollViewInsets = itemCtrl4.navigationBar.translucent = NO;
+//    itemCtrl4.view.backgroundColor = [UIColor blueColor];
     
 //    UITabBarController* tabBarCtl = [[UITabBarController alloc] init];
 //    [tabBarCtl setViewControllers:@[itemCtrl1,itemCtrl2,itemCtrl3] animated:YES];
@@ -81,42 +90,41 @@
 
 
 //获取当前屏幕显示的viewcontroller
-+ (UIViewController *)getCurrentVC
++ (UINavigationController *)getCurrentNavigationController
 {
     UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     
-    UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
+    UINavigationController *currentVC = [self getCurrentVCFrom:rootViewController];
     
     return currentVC;
 }
 
-+ (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC
++ (UINavigationController *)getCurrentVCFrom:(UIViewController *)rootVC
 {
-    UIViewController *currentVC;
+    UINavigationController *currentNaviVC;
     
     if ([rootVC presentedViewController]) {
         // 视图是被presented出来的
         
-        rootVC = [rootVC presentedViewController];
-    }
-    
-    if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        currentNaviVC = [rootVC presentedViewController].navigationController;
+    } else if ([rootVC isKindOfClass:[UITabBarController class]]) {
         // 根视图为UITabBarController
         
-        currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
+        currentNaviVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
         
     } else if ([rootVC isKindOfClass:[UINavigationController class]]){
         // 根视图为UINavigationController
-        
-        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
-        
+        if ([rootVC isMemberOfClass:[JKRootNavigationController class]]) {
+            currentNaviVC = [(UINavigationController *)rootVC visibleViewController].childViewControllers.firstObject;
+        }else{
+            currentNaviVC = (UINavigationController *)rootVC;
+        }
     } else {
         // 根视图为非导航类
-        
-        currentVC = rootVC;
+        currentNaviVC = rootVC.navigationController;
     }
     
-    return currentVC;
+    return currentNaviVC;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
